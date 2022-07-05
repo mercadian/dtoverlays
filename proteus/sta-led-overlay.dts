@@ -1,0 +1,19 @@
+/*
+ * Copyright (C) 2022 Mercadian Systems LLC
+ */
+ 
+/dts-v1/;
+/plugin/;
+
+// Overwrites the GPIO pin used for the STA (user) LED and the default trigger.
+/{
+	compatible = "radxa,rock-5b", "rockchip,rk3588";
+
+	fragment@0 {
+		target = <&sta_led>;
+		frag0: __overlay__ {
+			gpios = <&gpio1 13 0>; // 13 here corresponds to GPIO pin 26
+			linux,default-trigger = "activity";
+		};
+	};
+};
